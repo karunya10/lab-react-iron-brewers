@@ -10,7 +10,6 @@ function AllBeersPage() {
   // Mock initial state, to be replaced by data from the API. Once you retrieve the list of beers from the Beers API store it in this state variable.
   const [beers, setBeers] = useState(beersJSON);
   const [search, setSearch] = useState("");
-
   // TASKS:
   // 1. Set up an effect hook to make a request to the Beers API and get a list with all the beers.
   // 2. Use axios to make a HTTP request.
@@ -22,9 +21,12 @@ function AllBeersPage() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${apiURL}/search?q=${search}`).then((response) => {
-      setBeers(response.data);
-    });
+    const id = setTimeout(() => {
+      axios.get(`${apiURL}/search?q=${search}`).then((response) => {
+        setBeers(response.data);
+      });
+    }, 1000);
+    return () => clearTimeout(id);
   }, [search]);
   // The logic and the structure for the page showing the list of beers. You can leave this as it is for now.
   return (
