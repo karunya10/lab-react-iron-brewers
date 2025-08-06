@@ -34,11 +34,11 @@ function AddBeerPage() {
       name,
       tagline,
       description,
-      imageUrl,
-      firstBrewed,
-      brewersTips,
-      attenuationLevel: parseInt(attenuationLevel),
-      contributedBy,
+      image_url: imageUrl,
+      first_brewed: firstBrewed.trim(),
+      brewers_tips: brewersTips,
+      attenuation_level: parseInt(attenuationLevel),
+      contributed_by: contributedBy,
     };
     axios
       .post(apiURL, requestBody)
